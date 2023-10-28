@@ -2,7 +2,7 @@ package com.engeto.roomplants;
 
 import java.time.LocalDate;
 
-public class Plant{
+public class Plant implements Comparable<Plant>{
     private String name;
     private String notes;
     private LocalDate planted;
@@ -101,5 +101,10 @@ public class Plant{
                 ", poslední zálivka: " + watering +
                 ", četnost zálivky: 1x za " + frequencyOfWatering +
                 " dní.";
+    }
+
+    @Override
+    public int compareTo(Plant otherPlant) {
+        return name.compareTo(otherPlant.getName());
     }
 }
