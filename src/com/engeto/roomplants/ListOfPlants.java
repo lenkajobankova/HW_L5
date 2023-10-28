@@ -84,10 +84,15 @@ public class ListOfPlants {
         }
     }
     private static void rightWrittenFreq(String[] blocks, String line, int lineNumber) throws PlantException {
-        int freqOfWatering = Integer.parseInt(blocks[4]);
-        if (freqOfWatering<1){
-            throw new PlantException("Zadána nízká frekvence zálivky("+
-                    freqOfWatering+") na řádku č."+lineNumber+" ("+line+").");
+        int freqOfWatering;
+        try{
+            freqOfWatering = Integer.parseInt(blocks[4]);
+            if (freqOfWatering<1) {
+                throw new PlantException("Zadána nízká frekvence zálivky(" +
+                        freqOfWatering + ") na řádku č." + lineNumber + " (" + line + ").");
+            }
+        } catch (Exception e){
+            throw new PlantException("Nezadali jste číslo!");
         }
     }
 
