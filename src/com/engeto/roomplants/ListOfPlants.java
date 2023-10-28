@@ -59,13 +59,19 @@ public class ListOfPlants {
     }
     //region Getters and Setters
     public List<Plant> getListOfPlants(){
-        return new ArrayList<Plant>(listOfPlants);
+        return new ArrayList<>(listOfPlants);
     }
     public void addPlant(Plant newPlant){
         listOfPlants.add(newPlant);
     }
     public void removePlant(int index){
-        listOfPlants.remove(index);
+        try{
+            if (index>listOfPlants.size()){
+                listOfPlants.remove(index);
+            }
+        } catch (Exception e) {
+            System.err.println("Tolik rostlin v seznamu nemáme! Zadán index: "+index);
+        }
     }
     public void getPlant(int index){
         listOfPlants.get(index);
