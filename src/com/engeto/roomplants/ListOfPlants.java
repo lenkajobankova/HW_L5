@@ -1,6 +1,7 @@
 package com.engeto.roomplants;
 
 import java.io.*;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,16 +84,16 @@ public class ListOfPlants {
                     ") na řádku č."+lineNumber+" ("+line+").");
         }
     }
-    private static void rightWrittenFreq(String[] blocks, String line, int lineNumber) throws PlantException {
-        int freqOfWatering;
+    private static void rightWrittenFreq(String[] blocks, String line, int lineNumber) {
         try{
-            freqOfWatering = Integer.parseInt(blocks[4]);
-            if (freqOfWatering<1) {
-                throw new PlantException("Zadána nízká frekvence zálivky(" +
-                        freqOfWatering + ") na řádku č." + lineNumber + " (" + line + ").");
+            String input = blocks[4].trim();
+            int integer = Integer.parseInt(input);
+            if (integer<1) {
+                System.err.println("Zadána nízká frekvence zálivky(" +
+                        integer + ") na řádku č." + lineNumber + " (" + line + ").");
             }
-        } catch (Exception e){
-            throw new PlantException("Nezadali jste číslo!");
+        }catch (NumberFormatException ex){
+            System.err.println("Nesprávný formát čísla: "+ex.getLocalizedMessage());
         }
     }
 
